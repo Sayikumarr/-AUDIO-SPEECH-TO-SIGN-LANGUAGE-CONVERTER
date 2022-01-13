@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {% block content %}
-<div class="split left">
-	<h2 align="center">Enter Text or Use Mic</h2>
-	<br>
-		<form action="" method="post" align="left">
+<div class="topdown split left ">
+	<div class="centered">
+	  <h2>Enter Text or Use Mic</h2>
+	  <form action="" method="post" align="center">
 		{% csrf_token %}
 					<input type="text" name="sen" class="mytext" id="speechToText" placeholder="">
-					<button type="button" name="button" class="mic" onclick="record()"><img src="{% static 'mic3.png' %}" height="32px" width="38px" /></button>
+					<button type="button" name="button" class="mic" onclick="record()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+						<path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+						<path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/> </svg></button>
 		  			&nbsp&nbsp&nbsp&nbsp
 		  			<input type="submit" name="submit" class="submit">
 
 		</form>
-		<br>
-		<table cellspacing="20px">
+		<table class="align-self-center">
 			<tr>
 				<td class="td">The text that you entered is:</td>
 				<td class="td">{{ text }}</td>
@@ -30,26 +29,74 @@
 				</ul>
 			</td>
 		</tr>
-	</table></div>
-  <div class="split right">
-  <h2 align="center">Sign Language Animation</h2>
+	</table>
+	</div>
+  </div>
+  
+  <div class="topdown split right">
+	<div class="centered">
+	  <h2>Sign Language Animation</h2>
+	  <div style="text-align:center">	&nbsp&nbsp
+		<button class="submit" class="btn btn-dark" onclick="playPause()">Play/Pause</button>
+  
+		<video id="videoPlayer" width="600" height="350"  preload="auto" autoplay>
+		  <source src="" type="video/mp4">
+	  Your browser does not support HTML5 video.
+		</video>
+	</div>
+  </div>
+<!--
+<div class="home__data">
+	<br><br><br><br>
+	<div class="card">
+		<div class="card-body text-center">
+	<h2 "card-title">Enter Text or Use Mic</h2>
+	<br>
+		<form action="" method="post" align="center">
+		{% csrf_token %}
+					<input type="text" name="sen" class="mytext" id="speechToText" placeholder="">
+					<button type="button" name="button" class="mic" onclick="record()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+						<path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+						<path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/> </svg></button>
+		  			&nbsp&nbsp&nbsp&nbsp
+		  			<input type="submit" name="submit" class="submit">
+
+		</form>
+		<br>
+		<table class="align-self-center">
+			<tr>
+				<td class="td">The text that you entered is:</td>
+				<td class="td">{{ text }}</td>
+			</tr>
+			<tr>
+				<td class="td">Key words in sentence:</td>
+				<td class="td">
+				<ul class="td" id="list" align="center">
+  					{% for word in words %}
+    				<li id="{{ i }}" style="margin-right: 8px">{{ word }}</li>
+  					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+</div>
+<div class="card">
+	<div class="card-body text-center">
+  <h2 class="card-title">Sign Language Animation</h2>
 
 	<div style="text-align:center">	&nbsp&nbsp
-  	<button class="submit" onclick="playPause()">Play/Pause</button>
-  	<!--  LETS USE ONLY PLAY PAUSE BUTTON WITH 720 *420 ,IT FITS THE SCREEN ASHISH
-
-  	<button onclick="makeBig()">Big</button>
-  	<button onclick="makeSmall()">Small</button>
-  	<button onclick="makeNormal()">Normal</button>-->
-
+  	<button class="submit" class="btn btn-dark" onclick="playPause()">Play/Pause</button>
 
   	<video id="videoPlayer" width="600" height="350"  preload="auto" autoplay>
     	<source src="" type="video/mp4">
     Your browser does not support HTML5 video.
   	</video>
-  	</div></div>
-
-
+  </div>
+</div>
+</div>
+</div>
+-->
 <script>
 	//webkitSpeechRecognition api for speech to text conversion
 	function record(){
